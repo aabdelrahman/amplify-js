@@ -34,6 +34,22 @@ Our default implementation works with Amazon Web Services (AWS), but AWS Amplify
 - [Demo Applications](https://github.com/aws-amplify/amplify-js-samples)
 - [Contributing](https://github.com/aws-amplify/amplify-js/blob/main/CONTRIBUTING.md)
 
+### Notice
+
+Shadow Root surrounded the login form cause many problems:
+- Browser save password popup not working
+- Password autofill not working
+- Automation Test, XPath doesn't support elements inside Shadow Root 
+
+**Changes**
+- Change shadow flag in @Component to **false**
+- Remove **Host** tag from rendered html 
+																																																								 
+Changes in 2 files: 
+- amplify-js-main/packages/amplify-ui-components/src/components/amplify-authenticator/amplify-authenticator.tsx
+- amplify-js-main/packages/amplify-ui-components/src/components/amplify-sign-in/amplify-sign-in.tsx
+																																																			 
+																																																								 
 ### Features
 
 | Category                                                                                                          | AWS Provider                                                | Description                                                                                                            |
