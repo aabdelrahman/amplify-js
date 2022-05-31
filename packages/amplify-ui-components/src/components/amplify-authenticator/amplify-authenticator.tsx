@@ -1,4 +1,4 @@
-import { Component, State, Prop, h, Host, Element } from '@stencil/core';
+import { Component, State, Prop, h, Element } from '@stencil/core';
 import {
 	AuthState,
 	CognitoUserInterface,
@@ -39,7 +39,7 @@ const logger = new Logger('Authenticator');
 @Component({
 	tag: 'amplify-authenticator',
 	styleUrl: 'amplify-authenticator.scss',
-	shadow: true,
+	shadow: false,
 })
 export class AmplifyAuthenticator {
 	/** Initial starting state of the Authenticator component. E.g. If `signup` is passed the default component is set to AmplifySignUp */
@@ -196,7 +196,7 @@ export class AmplifyAuthenticator {
 
 	render() {
 		return (
-			<Host>
+			<div>
 				{!this.hideToast && this.toastMessage && (
 					<amplify-toast
 						message={this.toastMessage}
@@ -213,7 +213,7 @@ export class AmplifyAuthenticator {
 						{this.getSlotWithAuthComponent(this.authState)}
 					</div>
 				)}
-			</Host>
+			</div>
 		);
 	}
 }
