@@ -35,6 +35,7 @@ const logger = new Logger('ForgotPassword');
 
 @Component({
 	tag: 'amplify-forgot-password',
+	styleUrl: 'amplify-forgot-password.scss',
 	shadow: true,
 })
 export class AmplifyForgotPassword {
@@ -281,6 +282,9 @@ export class AmplifyForgotPassword {
 		const submitButtonText = this.delivery
 			? this.submitButtonText
 			: this.sendButtonText;
+		const passwordRules = this.delivery
+			? 'Please enter at least one capital letter (A to Z), at least one small letter(a to z), at least one digit (0 to 9), at least one special character (?=.*[-_$!%*?&)'
+			: '';
 		return (
 			<Host>
 				<amplify-form-section
@@ -304,6 +308,7 @@ export class AmplifyForgotPassword {
 					submitButtonText={I18n.get(submitButtonText)}
 				>
 					<amplify-auth-fields formFields={this.newFormFields} />
+					<div class="passwordRules">{passwordRules}</div>
 				</amplify-form-section>
 			</Host>
 		);
