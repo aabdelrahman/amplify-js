@@ -169,7 +169,9 @@ export class AmplifyForgotPassword {
 				break;
 			case 'phone_number':
 				if ((field as PhoneFormFieldType).dialCode) {
-					this.phoneNumber.countryDialCodeValue = (field as PhoneFormFieldType).dialCode;
+					this.phoneNumber.countryDialCodeValue = (
+						field as PhoneFormFieldType
+					).dialCode;
 				}
 				this.phoneNumber.phoneNumberValue = field.value;
 				break;
@@ -288,7 +290,11 @@ export class AmplifyForgotPassword {
 					secondaryFooterContent={
 						<amplify-button
 							variant="anchor"
-							onClick={() => this.handleAuthStateChange(AuthState.SignIn)}
+							onClick={() => {
+								this.handleAuthStateChange(AuthState.SignIn);
+								let event = new Event('displaySignIn');
+								window.dispatchEvent(event);
+							}}
 							data-test="forgot-password-back-to-sign-in-link"
 						>
 							{I18n.get(Translations.BACK_TO_SIGN_IN)}

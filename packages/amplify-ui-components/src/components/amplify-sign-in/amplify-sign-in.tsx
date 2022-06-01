@@ -196,7 +196,11 @@ export class AmplifySignIn {
 					{I18n.get(Translations.FORGOT_PASSWORD_TEXT)}{' '}
 					<amplify-button
 						variant="anchor"
-						onClick={() => this.handleAuthStateChange(AuthState.ForgotPassword)}
+						onClick={() => {
+							this.handleAuthStateChange(AuthState.ForgotPassword);
+							let event = new Event('resetPassCallback');
+							window.dispatchEvent(event);
+						}}
 						data-test="sign-in-forgot-password-link"
 					>
 						{I18n.get(Translations.RESET_PASSWORD_TEXT)}
@@ -226,9 +230,11 @@ export class AmplifySignIn {
 							{I18n.get(Translations.FORGOT_PASSWORD_TEXT)}{' '}
 							<amplify-button
 								variant="anchor"
-								onClick={() =>
-									this.handleAuthStateChange(AuthState.ForgotPassword)
-								}
+								onClick={() => {
+									this.handleAuthStateChange(AuthState.ForgotPassword);
+									let event = new Event('resetPassCallback');
+									window.dispatchEvent(event);
+								}}
 								data-test="sign-in-forgot-password-link"
 							>
 								{I18n.get(Translations.RESET_PASSWORD_TEXT)}
