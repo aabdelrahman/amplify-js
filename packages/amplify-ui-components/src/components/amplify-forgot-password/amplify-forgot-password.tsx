@@ -267,6 +267,8 @@ export class AmplifyForgotPassword {
 			);
 			logger.debug(data);
 			this.handleAuthStateChange(AuthState.SignIn);
+			let event = new Event('displaySignIn');
+			window.dispatchEvent(event);
 			this.delivery = null;
 		} catch (error) {
 			dispatchToastHubEvent(error);
@@ -283,7 +285,12 @@ export class AmplifyForgotPassword {
 			? this.submitButtonText
 			: this.sendButtonText;
 		const passwordRules = this.delivery
-			? 'Please enter at least one capital letter (A to Z), at least one small letter(a to z), at least one digit (0 to 9), at least one special character (?=.*[-_$!%*?&)'
+			? `
+			- At least 8 characters.\n
+			- At least one capital letter (A to Z).\n
+			- At least one small letter (a to z).\n
+			- At least one digit (0 to 9).\n
+			- At least one special character (?=.*[-@_$! %*?&).`
 			: '';
 		return (
 			<Host>
