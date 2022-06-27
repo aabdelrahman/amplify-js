@@ -267,8 +267,8 @@ export class AmplifyForgotPassword {
 			);
 			logger.debug(data);
 			this.handleAuthStateChange(AuthState.SignIn);
-			let event = new Event('displaySignIn');
-			window.dispatchEvent(event);
+			// let event = new Event('displaySignIn');
+			// window.dispatchEvent(event);
 			this.delivery = null;
 		} catch (error) {
 			dispatchToastHubEvent(error);
@@ -303,8 +303,8 @@ export class AmplifyForgotPassword {
 							variant="anchor"
 							onClick={() => {
 								this.handleAuthStateChange(AuthState.SignIn);
-								let event = new Event('displaySignIn');
-								window.dispatchEvent(event);
+								// let event = new Event('displaySignIn');
+								// window.dispatchEvent(event);
 							}}
 							data-test="forgot-password-back-to-sign-in-link"
 						>

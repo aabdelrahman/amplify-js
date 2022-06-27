@@ -198,8 +198,8 @@ export class AmplifySignIn {
 						variant="anchor"
 						onClick={() => {
 							this.handleAuthStateChange(AuthState.ForgotPassword);
-							let event = new Event('resetPassCallback');
-							window.dispatchEvent(event);
+							// let event = new Event('resetPassCallback');
+							// window.dispatchEvent(event);
 						}}
 						data-test="sign-in-forgot-password-link"
 					>
@@ -232,8 +232,8 @@ export class AmplifySignIn {
 								variant="anchor"
 								onClick={() => {
 									this.handleAuthStateChange(AuthState.ForgotPassword);
-									let event = new Event('resetPassCallback');
-									window.dispatchEvent(event);
+									// let event = new Event('resetPassCallback');
+									// window.dispatchEvent(event);
 								}}
 								data-test="sign-in-forgot-password-link"
 							>

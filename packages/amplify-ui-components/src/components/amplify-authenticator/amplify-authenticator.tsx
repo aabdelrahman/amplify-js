@@ -139,6 +139,14 @@ export class AmplifyAuthenticator {
 
 	// Returns the auth component corresponding to the given authState.
 	private getAuthComponent(authState: AuthState): JSXBase.IntrinsicElements {
+		if (authState != AuthState.SignIn) {
+			let event = new Event('hideSignIn');
+			window.dispatchEvent(event);
+		} else {
+			let event = new Event('displaySignIn');
+			window.dispatchEvent(event);
+		}
+
 		switch (authState) {
 			case AuthState.SignIn:
 				return (

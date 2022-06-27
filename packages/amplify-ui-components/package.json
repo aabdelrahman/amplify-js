@@ -1,6 +1,6 @@
 {
 	"name": "@rology-aws-amplify/ui-components",
-	"version": "1.9.24",
+	"version": "1.9.25",
 	"description": "Core Amplify UI Component Library",
 	"module": "dist/index.mjs",
 	"main": "dist/index.js",
