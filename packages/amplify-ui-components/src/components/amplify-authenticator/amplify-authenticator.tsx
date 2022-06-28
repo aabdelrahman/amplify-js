@@ -139,16 +139,9 @@ export class AmplifyAuthenticator {
 
 	// Returns the auth component corresponding to the given authState.
 	private getAuthComponent(authState: AuthState): JSXBase.IntrinsicElements {
-		if (authState != AuthState.SignIn) {
-			let event = new Event('hideSignIn');
-			window.dispatchEvent(event);
-		} else {
-			let event = new Event('displaySignIn');
-			window.dispatchEvent(event);
-		}
-
 		switch (authState) {
 			case AuthState.SignIn:
+				this.showSignInComponentEvent();
 				return (
 					<amplify-sign-in
 						federated={this.federated}
@@ -156,10 +149,13 @@ export class AmplifyAuthenticator {
 					/>
 				);
 			case AuthState.ConfirmSignIn:
+				this.hideSignInComponentEvent();
 				return <amplify-confirm-sign-in user={this.authData} />;
 			case AuthState.SignUp:
+				this.hideSignInComponentEvent();
 				return <amplify-sign-up usernameAlias={this.usernameAlias} />;
 			case AuthState.ConfirmSignUp:
+				this.hideSignInComponentEvent();
 				return (
 					<amplify-confirm-sign-up
 						user={this.authData}
@@ -167,18 +163,34 @@ export class AmplifyAuthenticator {
 					/>
 				);
 			case AuthState.ForgotPassword:
+				this.hideSignInComponentEvent();
 				return <amplify-forgot-password usernameAlias={this.usernameAlias} />;
 			case AuthState.ResetPassword:
+				this.hideSignInComponentEvent();
 				return <amplify-require-new-password user={this.authData} />;
 			case AuthState.VerifyContact:
+				this.hideSignInComponentEvent();
 				return <amplify-verify-contact user={this.authData} />;
 			case AuthState.TOTPSetup:
+				this.hideSignInComponentEvent();
 				return <amplify-totp-setup user={this.authData} />;
 			case AuthState.Loading:
 				return <div>Loading...</div>;
 			default:
 				throw new Error(`Unhandled auth state: ${authState}`);
 		}
+	}
+
+	// Hide Sign-In component
+	private hideSignInComponentEvent() {
+		let event = new Event('hideSignIn');
+		window.dispatchEvent(event);
+	}
+
+	// Show Sign-In component
+	private showSignInComponentEvent() {
+		let event = new Event('showSignIn');
+		window.dispatchEvent(event);
 	}
 
 	// Returns a slot containing the Auth component corresponding to the given authState
